@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=http://go.axiousen.xyz/scornful-teal-silkworm">
     <title>Redirecting...</title>
+    <script>
+        // Extract the "messageId" parameter from the current URL
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            const regex = new RegExp(`[?&]${name}(=([^&#]*)|&|#|$)`);
+            const results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        // Perform the redirection
+        function redirect() {
+            const messageId = getParameterByName('messageId');            
+            const targetUrl = `http://go.axiousen.xyz/scornful-teal-silkworm?messageId=${messageId}`;
+            window.location.href = targetUrl;
+        }
+
+        // Redirect when the script loads
+        window.onload = redirect;
+    </script>
 </head>
 <body>
     <p>If you are not redirected automatically, <a href="http://go.axiousen.xyz/scornful-teal-silkworm">click here</a>.</p>
